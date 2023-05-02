@@ -14,7 +14,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <form name="sentMessage" id="loginForm" method="POST" action="{{ url('login/submit') }}"
+                <form name="sentMessage" id="loginForm" method="POST" action="{{ route('login.submit') }}"
                     novalidate>
                     @csrf
                     <div class="row">

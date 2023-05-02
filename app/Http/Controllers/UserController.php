@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,6 +62,11 @@ class UserController extends Controller
                 return redirect('actualizar')
                     ->withErrors($error_message)
                     ->withInput();
+            } catch (RequestException $e) {
+                $response = $e->getResponse();
+                $status_code = $response->getStatusCode();
+    
+                return redirect('error');
             }
         }
     }
@@ -92,6 +98,11 @@ class UserController extends Controller
             if($status_code == 404) {
                 return view('user.suscripciones')->with('suscripciones', false);
             }
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            $status_code = $response->getStatusCode();
+
+            return redirect('error');
         }
     }
 }

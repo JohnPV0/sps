@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\RegisterConfirmationEmail;
@@ -51,9 +52,12 @@ class RegistrarController extends Controller
                 if ($status_code == 409) {
                     $error_message = json_decode($response->getBody(), true)['message'];
                     return false;
-                } else if ($status_code == 500){
-                    return true;
-                }
+                } 
+            } catch (RequestException $e) {
+                $response = $e->getResponse();
+                $status_code = $response->getStatusCode();
+    
+                return redirect('error');
             }
         });
 
@@ -124,6 +128,11 @@ class RegistrarController extends Controller
                 $error_message = json_decode($response->getBody(), true)['message'];
                 return redirect('registrarse')->with("email_error", $error_message)
                     ->withInput();
+            } catch (RequestException $e) {
+                $response = $e->getResponse();
+                $status_code = $response->getStatusCode();
+    
+                return redirect('error');
             }
             
             

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 use Carbon\Carbon;
 
 class ComprasController extends Controller
@@ -44,6 +45,12 @@ class ComprasController extends Controller
             if($status_code == 404) {
                 return view('compras')->with('suscription', false);
             }
+           
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            $status_code = $response->getStatusCode();
+
+            return redirect('error');
         }
     }
 }

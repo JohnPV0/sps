@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Omnipay\Omnipay;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\RequestException;
 use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
@@ -94,7 +95,14 @@ class PaymentController extends Controller
                     $response = $e->getResponse();
                     $status_code = $response->getStatusCode();
                     $response = json_decode($response->getBody(), true);
+                    
+
                     return $response['message'];
+                } catch (RequestException $e) {
+                    $response = $e->getResponse();
+                    $status_code = $response->getStatusCode();
+        
+                    return redirect('error');
                 }
                 return view('payments.success')->with('payment_id', $data['id']);
             } else {

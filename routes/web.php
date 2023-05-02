@@ -30,6 +30,9 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 
 Route::post('login/submit', [AuthController::class, 'login'])->name('login.submit');
 
+Route::get('error', function () {
+    return view('error');
+})->name('error');
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
