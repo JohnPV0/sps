@@ -23,7 +23,7 @@
                        <h4>Características</h4>
                        <ul>
                            <li><i class="fa fa-check-square"></i>Podrás aprender a subnetear de manera gratuita</li>
-                           <li><i class="fa fa-check-square"></i>Si ejercicios de práctica necesitarás adquirir una licencia en <a href="{{ asset('compras') }}">Comprar</a></li>
+                           <li><i class="fa fa-check-square"></i>Si quieres practicar con ejercicios necesitarás adquirir una licencia en <a href="{{ asset('compras') }}">Comprar</a></li>
                            <li><i class="fa fa-check-square"></i>Necesitas crear una cuenta de manera gratuita para cualquiera de ambos casos</li>
                             <li><i class="fa fa-check-square"></i>No guardamos tus datos de compra, y es seguro mediante Paypal</li>
                         </ul>

@@ -10,6 +10,8 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ComprasController;
 use App\Http\Controllers\UserController;
 
+use App\Http\Controllers\VideoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +53,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/actualizar', [UserController::class, 'updateView'])->name('actualizar');
     Route::post('/actualizar', [UserController::class, 'update'])->name('actualizar.submit');
     Route::get('/suscripciones', [UserController::class, 'suscripciones'])->name('suscripciones');
+    Route::get('/aprender', [VideoController::class, 'index'])->name('aprender');
 });
 
 Route::get('/registrarse', [RegistrarController::class, 'index'])->name('register');

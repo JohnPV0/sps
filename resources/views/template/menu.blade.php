@@ -33,7 +33,15 @@
                                 <a href="{{route('dashboard')}}">Perfil</a>
                             @endif
                         </li>
+                        <li>
+                            @if(request()->is('aprender'))
+                                <a class="active" href="{{route('aprender')}}">Aprender</a>
+                            @else 
+                                <a href="{{route('aprender')}}">Aprender</a>
+                            @endif
+                        </li>
                         @endif
+                        
                         <li>
                             @if(request()->is('descargar'))
                                 <a class="active" href="{{asset('/descargar')}}">Descargar</a>
